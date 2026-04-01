@@ -1,0 +1,40 @@
+{
+  "last_index": -1,
+  "topics": [
+    {
+      "topic": "Large Language Models: Recent Advances and Applications",
+      "type": "blog",
+      "tags": ["LLM", "AI", "NLP"]
+    },
+    {
+      "topic": "Agentic AI Systems and Multi-Agent Architectures",
+      "type": "blog",
+      "tags": ["AI", "agents", "automation"]
+    },
+    {
+      "topic": "Retrieval-Augmented Generation (RAG) in Production",
+      "type": "blog",
+      "tags": ["RAG", "LLM", "AI"]
+    },
+    {
+      "topic": "AI Safety and Alignment: Current Research Landscape",
+      "type": "blog",
+      "tags": ["AI safety", "alignment", "research"]
+    },
+    {
+      "topic": "Transformer Architecture Improvements in 2025",
+      "type": "blog",
+      "tags": ["transformers", "deep learning", "AI"]
+    },
+    {
+      "topic": "AI in Healthcare: Diagnostics and Drug Discovery",
+      "type": "blog",
+      "tags": ["AI", "healthcare", "research"]
+    },
+    {
+      "topic": "Open Source AI Models vs Proprietary Models",
+      "type": "blog",
+      "tags": ["AI", "open source", "LLM"]
+    }
+  ]
+}

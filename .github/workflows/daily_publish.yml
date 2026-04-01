@@ -1,0 +1,50 @@
+name: Daily Research & Publish
+
+on:
+  schedule:
+    - cron: "0 8 * * *"   # every day at 8:00 AM UTC
+  workflow_dispatch:        # manual trigger from GitHub UI
+
+jobs:
+  research-and-publish:
+    runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+    steps:
+      - name: Checkout pipeline
+        uses: actions/checkout@v4.2.2
+
+      - name: Checkout website
+        uses: actions/checkout@v4.2.2
+        with:
+          repository: cloudpiece/research-blog
+          path: website
+          token: ${{ secrets.GH_PAT }}
+
+      - name: Set up Python
+        uses: actions/setup-python@v5.6.0
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git for website repo
+        run: |
+          git -C website config user.name "Research Bot"
+          git -C website config user.email "bot@users.noreply.github.com"
+
+      - name: Run pipeline (auto mode)
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          WEBSITE_DIR: ${{ github.workspace }}/website
+        run: python pipeline.py --auto
+
+      - name: Commit updated topic index
+        run: |
+          git config user.name "Research Bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add daily_topics.json
+          git diff --cached --quiet || git commit -m "chore: update topic index"
+          git push

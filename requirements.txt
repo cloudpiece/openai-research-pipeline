@@ -1,0 +1,4 @@
+openai
+httpx
+beautifulsoup4
+duckduckgo-search
